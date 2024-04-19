@@ -11,6 +11,4 @@
 """
 import logging
 
-from middleware_helper import __name__
-
-logger = logging.getLogger(name=__name__)
+logger = logging.getLogger(name="root")
