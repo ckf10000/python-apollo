@@ -9,12 +9,10 @@
 # Copyright ©2011-2024. Hunan xxxxxxx Company limited. All rights reserved.
 # ---------------------------------------------------------------------------------------------------------
 """
-import os
 import time
 import json
 import traceback
 import threading
-import typing as t
 from apollo_proxy.helper import *
 
 __all__ = ['ApolloClient']
@@ -41,7 +39,7 @@ class FactoryClient(object):
         self.__no_key = {}
         self.__hash = {}
         self.__pull_timeout = 75
-        self.__cache_file_path = os.path.expanduser('~') + '/data/apollo/cache/'
+        self.__cache_file_path = get_project_path()
         self.__long_poll_thread = None
         self.__change_listener = change_listener  # "add" "delete" "update"
         self.__notification_map = {'application': -1}

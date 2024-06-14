@@ -9,10 +9,12 @@
 # Copyright ©2011-2024. Hunan xxxxxxx Company limited. All rights reserved.
 # ---------------------------------------------------------------------------------------------------------
 """
+import os
 import ast
 import sys
 import socket
 import hashlib
+import typing as t
 from json import decoder
 
 version = sys.version_info.major
@@ -80,3 +82,14 @@ def is_json(args: str) -> bool:
             return False
     except (decoder.JSONDecodeError, TypeError, Exception):
         return False
+
+
+def get_project_path():
+    # 获取当前执行文件的绝对路径（兼容 Python 2 和 Python 3）
+    exec_file_path = os.path.abspath(sys.argv[0])
+    exec_file_path_slice = exec_file_path.split(os.path.sep)
+    return os.path.sep.join(exec_file_path_slice[:-1])
+
+
+def join_path(path_slice: list) -> t.LiteralString | str | bytes:
+    return os.path.join(*path_slice)
