@@ -18,7 +18,7 @@ setup(
     long_description='This is my apollo proxy client package',
     author='ckf10000',
     author_email='ckf10000@sina.com',
-    url='https://github.com/ckf10000/python-apollo/',
+    url='https://github.com/ckf10000/python-apollo',
     packages=find_packages(),
     install_requires=[],
     classifiers=[
