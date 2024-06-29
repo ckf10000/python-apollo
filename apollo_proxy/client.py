@@ -343,4 +343,6 @@ class ApolloClient(object):
 
     def get_all_values(self) -> t.Any:
         value = self.__apollo_client.get_all_values(namespace=self.__namespace)
-        return ast.literal_eval(value) if is_json(value) is True else value
+        values = ast.literal_eval(value) if is_json(value) is True else value
+        return {key: ast.literal_eval(value) if is_json(value) is True else value for key, value in
+                values.items()} if isinstance(values, dict) else values
