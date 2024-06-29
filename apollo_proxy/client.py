@@ -337,11 +337,15 @@ class ApolloClient(object):
         self.__namespace = namespace
         setattr(self.__apollo_client, "namespace", self.__namespace)
 
-    def get_value(self, key: str) -> t.Any:
+    def get_value(self, key: str, namespace: str = None) -> t.Any:
+        if namespace:
+            self.__namespace = namespace
         value = self.__apollo_client.get_value(key, namespace=self.__namespace)
         return ast.literal_eval(value) if is_json(value) is True else value
 
-    def get_all_values(self) -> t.Any:
+    def get_all_values(self, namespace: str = None) -> t.Any:
+        if namespace:
+            self.__namespace = namespace
         value = self.__apollo_client.get_all_values(namespace=self.__namespace)
         values = ast.literal_eval(value) if is_json(value) is True else value
         return {key: ast.literal_eval(value) if is_json(value) is True else value for key, value in

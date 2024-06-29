@@ -13,7 +13,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='python-apollo-proxy',
-    version='0.1.3',
+    version='0.1.4',
     description='This is my apollo proxy client package',
     long_description='This is my apollo proxy client package',
     author='ckf10000',
