@@ -341,12 +341,12 @@ class ApolloClient(object):
         if namespace:
             self.__namespace = namespace
         value = self.__apollo_client.get_value(key, namespace=self.__namespace)
-        return convert_json(value) if is_json(value) is True else value
+        return ast.literal_eval(value) if is_json(value) is True else value
 
     def get_all_values(self, namespace: str = None) -> t.Any:
         if namespace:
             self.__namespace = namespace
         value = self.__apollo_client.get_all_values(namespace=self.__namespace)
-        values = convert_json(value) if is_json(value) is True else value
-        return {key: convert_json(value) if is_json(value) is True else value for key, value in
+        values = ast.literal_eval(value) if is_json(value) is True else value
+        return {key: ast.literal_eval(value) if is_json(value) is True else value for key, value in
                 values.items()} if isinstance(values, dict) else values

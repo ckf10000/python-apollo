@@ -10,12 +10,12 @@
 # ---------------------------------------------------------------------------------------------------------
 """
 import os
-# import ast
+import ast
 import sys
 import socket
 import hashlib
 import typing as t
-from json import decoder, loads
+from json import decoder
 
 version = sys.version_info.major
 
@@ -74,20 +74,14 @@ def init_ip() -> str:
 
 def is_json(args: str) -> bool:
     try:
-        # value = ast.literal_eval(args)
-        # if isinstance(value, list) or isinstance(value, dict) or \
-        #         isinstance(value, bytes) or isinstance(value, bytearray):
-        #     return True
-        # else:
-        #     return False
-        loads(args)
-        return True
+        value = ast.literal_eval(args)
+        if isinstance(value, list) or isinstance(value, dict) or \
+                isinstance(value, bytes) or isinstance(value, bytearray):
+            return True
+        else:
+            return False
     except (decoder.JSONDecodeError, TypeError, Exception):
         return False
-
-
-def convert_json(args: str) -> t.Any:
-    return loads(args)
 
 
 def get_project_path():
