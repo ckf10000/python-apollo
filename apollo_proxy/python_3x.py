@@ -21,7 +21,11 @@ def http_request(url, timeout, headers: dict = None):
         body = res.read().decode("utf-8")
         return res.code, body
     except Exception as e:
-        logger.warning("http_request error, msg is %s", e)
+        if str(e).find("HTTP Error 304") != -1:
+            return 304, dict()
+        else:
+            logger.error("http_request error, msg is %s", e)
+            return 500, dict()
 
 
 def url_encode(params):

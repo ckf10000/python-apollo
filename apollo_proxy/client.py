@@ -221,7 +221,7 @@ class FactoryClient(object):
             code, body = http_request(url, self.__pull_timeout, headers=self.__sign_headers(url))
             http_code = code
             if http_code == 304:
-                logger.error('No change, loop...')
+                logger.warning('No change, loop...')
                 return
             if http_code == 200:
                 data = json.loads(body)
@@ -234,7 +234,7 @@ class FactoryClient(object):
             else:
                 logger.warning('Sleep...')
         except Exception as e:
-            logger.warning(str(e))
+            logger.error(str(e))
 
     def __get_net_and_set_local(self, namespace, n_id, call_change=False):
         namespace_data = self.__get_json_from_net(namespace)
